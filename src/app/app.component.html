@@ -1,21 +1,188 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<form [formGroup]="forma" (ngSubmit)="registrarAgremiado()">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 animated fadeIn">
+        <div class="card">
+            <div class="header">
+                <h2>
+                    INFORMACIÓN PERSONAL
+                </h2>
+            </div>
+            <div class="body">
+                <div class="row clearfix">
+                    <div class="col-md-12">
+                        <label>Nombre del agremiado</label>
+                        <div class="form-group">
+                            <div class="form-line">
+                                <input type="text" formControlName="nombre" name="nombre" class="form-control" placeholder="Nombre completo">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div formGroupName="personal">
+                    <div class="row clearfix">
+                        <div class="col-md-4">
+                            <label>Sexo</label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <!-- <select [(ngModel)]="usuario.role" name="role" class="form-control"> -->
+                                    <select formControlName="sexo" name="sexo" class="form-control">
+                  <option value="">Selecciona el sexo</option>
+                  <option value="Masculino">Masculino</option>
+                  <option value="Femenino">Femenino</option>
+                </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label>Estado civil</label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <select formControlName="estadoCivil" name="estadoCivil" class="form-control">
+                  <option value="">Selecciona el estado civil</option>
+                  <option value="Soltero">Soltero(a)</option>
+                  <option value="Casado">Casado(a)</option>
+                </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label>Estudios académicos</label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <select formControlName="estudios" name="estudios" class="form-control">
+                  <option value="">Selecciona el nivel académico</option>
+                  <option value="Educación básica">Educación básica</option>
+                  <option value="Educación media superior">Educación media superior</option>
+                  <option value="Educación superior">Educación superior</option>
+                </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-md-6">
+                            <label>RFC</label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input formControlName="rfc" name="rfc" type="text" class="form-control" placeholder="MELM8305281H0">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label>CURP</label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input formControlName="curp" type="text" class="form-control" placeholder="SABC560626MDFLRN09">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<router-outlet></router-outlet>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 animated fadeIn">
+        <div class="card">
+            <div class="header">
+                <h2>
+                    DIRECCIÓN
+                </h2>
+            </div>
+            <div class="body">
+                <div formGroupName="direccion">
+                    <div class="row clearfix">
+                        <div class="col-md-4">
+                            <label>Código postal</label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input #input formControlName="cp" (keyup)="buscarCP( input.value )" maxlength="5" type="text" class="form-control" placeholder="15760">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label>Estado</label>
+                            <div class="form-group">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input tabindex="-1" formControlName="estado" type="text" class="form-control" placeholder="" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label>Municipio</label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input formControlName="municipio" type="text" class="form-control" placeholder="" readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-md-4">
+                            <label>Colonia</label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <!-- <select [(ngModel)]="usuario.role" name="role" class="form-control"> -->
+                                    <select formControlName="colonia" name="colonia" class="form-control">
+                                    <option value="">Selecciona el puesto</option>
+                                    <!-- <option *ngFor="let colonia of direccion?.colonias" [value]="colonia">
+                                      {{ colonia }}
+                                    </option> -->
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label>Calle</label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input formControlName="calle" type="text" class="form-control" placeholder="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <label>No. ext</label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input formControlName="numeroExt" type="text" class="form-control" placeholder="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <label>No. int</label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input formControlName="numeroInterior" type="text" class="form-control" placeholder="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-md-8">
+                            <label>Referencia</label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <textarea formControlName="referencia" rows="1" class="form-control no-resize" placeholder="Escribe calles de referencia"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label>Sección electoral</label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input formControlName="seccionElectoral" type="text" class="form-control" placeholder="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <button type="submit" class="btn btn-primary m-t-15 waves-effect">
+            <i class="material-icons">save</i> CREAR
+          </button>
+        </div>
+    </div>
+</form>
